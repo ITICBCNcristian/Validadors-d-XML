@@ -1,0 +1,43 @@
+<!DOCTYPE tenda_instruments [
+<!ELEMENT tenda_instruments (instruments, clients)>
+<!ELEMENT instruments (acustic+, electric*)>
+<!ELEMENT acustic EMPTY>
+<!ATTLIST acustic
+  id ID #REQUIRED
+  tipus (guitarra|piano|bateria) #REQUIRED
+  marca CDATA #REQUIRED
+  model CDATA #REQUIRED
+  preu CDATA #REQUIRED
+  forma CDATA #REQUIRED
+  material CDATA #REQUIRED
+  color CDATA #REQUIRED>
+<!ELEMENT electric EMPTY>
+<!ATTLIST electric
+  id ID #REQUIRED
+  tipus (guitarra|piano|bateria) #REQUIRED
+  marca CDATA #REQUIRED
+  model CDATA #REQUIRED
+  preu CDATA #REQUIRED
+  forma CDATA #REQUIRED
+  material CDATA #REQUIRED
+  color CDATA #REQUIRED>
+<!ELEMENT clients (client+)>
+<!ELEMENT client (dades, compres)>
+<!ATTLIST client
+  dni ID #REQUIRED
+  nom CDATA #REQUIRED
+  telefon CDATA #REQUIRED
+  correu CDATA #REQUIRED>
+<!ELEMENT dades EMPTY>
+<!ATTLIST dades
+  nom CDATA #REQUIRED
+  telefon CDATA #REQUIRED
+  correu CDATA #REQUIRED>
+<!ELEMENT compres (compra+)>
+<!ELEMENT compra (id_instrument, dni_client)>
+<!ATTLIST compra
+  id_instrument IDREF #REQUIRED
+  dni_client IDREF #REQUIRED>
+<!ELEMENT dataCompra EMPTY>
+<!ELEMENT dataRecollida EMPTY>
+]>

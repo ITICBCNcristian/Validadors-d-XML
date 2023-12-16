@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tenda_instruments [
+<!ELEMENT tenda_instruments (instruments, clients)>
+<!ELEMENT instruments (acustic+, electric*)>
+<!ELEMENT acustic EMPTY>
+<!ATTLIST acustic
+  id ID #REQUIRED
+  tipus (guitarra|piano|bateria) #REQUIRED
+  marca CDATA #REQUIRED
+  model CDATA #REQUIRED
+  preu CDATA #REQUIRED
+  forma CDATA #REQUIRED
+  material CDATA #REQUIRED
+  color CDATA #REQUIRED>
+<!ELEMENT electric EMPTY>
+<!ATTLIST electric
+  id ID #REQUIRED
+  tipus (guitarra|piano|bateria) #REQUIRED
+  marca CDATA #REQUIRED
+  model CDATA #REQUIRED
+  preu CDATA #REQUIRED
+  forma CDATA #REQUIRED
+  material CDATA #REQUIRED
+  color CDATA #REQUIRED>
+<!ELEMENT clients (client+)>
+<!ELEMENT client (dades, compres)>
+<!ATTLIST client
+  dni ID #REQUIRED
+  nom CDATA #REQUIRED
+  telefon CDATA #REQUIRED
+  correu CDATA #REQUIRED>
+<!ELEMENT dades EMPTY>
+<!ATTLIST dades
+  nom CDATA #REQUIRED
+  telefon CDATA #REQUIRED
+  correu CDATA #REQUIRED>
+<!ELEMENT compres (compra+)>
+<!ELEMENT compra (id_instrument, dni_client)>
+<!ATTLIST compra
+  id_instrument IDREF #REQUIRED
+  dni_client IDREF #REQUIRED>
+<!ELEMENT dataCompra EMPTY>
+<!ELEMENT dataRecollida EMPTY>
+]>
+<tenda_instruments>
+	<instruments>
+        <acustic ref="TipusAcustic">
+            <id>122</id>
+            <tipus> Guitarra Flamenca </tipus>
+            <marca>Córdoba</marca>
+       	    <model> Orquestra Fusió CE-45 </model>
+            <preu>144.99</preu>
+            <forma>Tradicional</forma>
+            <material>Auró i cedre</material>
+            <color>Natural</color>
+        </acustic>
+<!-- Establim l’atribut ‘TipusAcustic’ per
+poder utilitzar-ho més tard -->
+        <electric ref="TipusElectric"> 
+		<id>875</id>
+            <tipus>Violoncel elèctric</tipus>
+            <model>SR11 Cello Estudiant 4/4</model>
+            <marca>Stentor</marca>
+            <preu>490</preu>
+            <forma>Tradicional</forma>
+            <material>Auró i pi</material>
+            <color>Natural</color>
+        </electric>
+      <!-- Establim l’atribut ‘TipusElectric’ per	
+poder utilitzar-ho més tard -->
+    </instruments>
+    <clients>
+        <client>
+		    <dades ref="InfoClient">
+			    <dni>99657933J</dni>
+			    <nom>Jordi Mas Garcia</nom>
+			    <telefon>644 098 557</telefon>
+			    <correu>garmajo@gmail.com</correu>
+		    </dades>
+	<!-- Establim l’atribut ‘InfoClient’ per poder 	utilitzar-ho més tard -->
+		    <compres>
+				<compra ref="InfoCompra">
+					<ref> 123456 </ref>
+				<data>
+		            <dataCompra>21/11/23</dataCompra>
+                    <dataRecollida>27/11/23</dataRecollida>
+                </data>
+				<id_instrument>221</id_instrument>
+				<dni_client>99657933J</dni_client>
+		        </compra>
+<!-- Utilitzem id_instrument com a foreign key fent referencia al id de cada instrument establert prèviament en la tabla de cada instrument dins acústic o elèctric (en guitarra,piano,bateria,etc).	
+I amb dni_client fem el mateix (fent referencia a l’etiqueta dni, de la tabla de clients). -->
+            </compres> 
+<!-- Establim l’atribut ‘InfoCompra’ per poder 	utilitzar-ho més tard -->
+        </client>			
+    </clients>
+</tenda_instruments>
